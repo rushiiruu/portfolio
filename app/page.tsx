@@ -838,15 +838,6 @@ export default function Portfolio() {
                       {p.tech.map((t) => <span className="tech-badge" key={t}>{t}</span>)}
                     </div>
                     <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
-                      {p.video && (
-                        <button
-                          className="project-link"
-                          style={{ background: "none", border: "none", cursor: "pointer", fontFamily: "inherit", padding: 0 }}
-                          onClick={() => setOpenDemo(openDemo === p.num ? null : p.num)}
-                        >
-                          {openDemo === p.num ? "Hide Demo ↑" : "View Demo ▶"}
-                        </button>
-                      )}
                       {p.link && (
                         <a href={p.link} target="_blank" rel="noopener noreferrer" className="project-link">
                           View Live →
@@ -857,39 +848,30 @@ export default function Portfolio() {
                           View Article →
                         </a>
                       )}
+                      {p.video && (
+                        <button
+                          className="project-link"
+                          style={{ background: "none", border: "none", cursor: "pointer", fontFamily: "inherit", padding: 0 }}
+                          onClick={() => setOpenDemo(openDemo === p.num ? null : p.num)}
+                        >
+                          {openDemo === p.num ? "Hide Demo ↑" : "View Demo ▶"}
+                        </button>
+                      )}
                       <span className="project-period">{p.period}</span>
                     </div>
                   </div>
 
-                  {p.video && (
-                    <div
-                      style={{
-                        display: "grid",
-                        gridTemplateRows: openDemo === p.num ? "1fr" : "0fr",
-                        marginTop: openDemo === p.num ? "1.25rem" : "0",
-                        transition: "grid-template-rows 0.45s cubic-bezier(0.4,0,0.2,1), margin-top 0.45s ease",
-                      }}
-                    >
-                      <div style={{ overflow: "hidden" }}>
-                        <div
-                          style={{
-                            borderRadius: "12px",
-                            overflow: "hidden",
-                            border: "1px solid var(--border)",
-                            background: "#000",
-                            opacity: openDemo === p.num ? 1 : 0,
-                            transform: openDemo === p.num ? "translateY(0)" : "translateY(-8px)",
-                            transition: "opacity 0.35s ease 0.1s, transform 0.35s ease 0.1s",
-                          }}
-                        >
-                          <video
-                            src={p.video}
-                            controls
-                            style={{ width: "100%", display: "block", maxHeight: "480px" }}
-                            preload="metadata"
-                          />
-                        </div>
-                      </div>
+                  {p.video && openDemo === p.num && (
+                    <div style={{ marginTop: "1.25rem" }}>
+                      <iframe
+                        width="100%"
+                        height="360"
+                        src={p.video.replace("youtu.be/", "www.youtube.com/embed/")}
+                        title={p.title}
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      />
                     </div>
                   )}
                 </div>
