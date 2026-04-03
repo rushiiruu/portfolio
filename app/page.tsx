@@ -106,7 +106,7 @@ export default function Portfolio() {
       desc: "Developed responsive UI for room browsing, booking, and reservation management. Designed the payment and receipt interface and integrated with PHP/MySQL backend.",
       tech: ["PHP", "MySQL", "JavaScript", "HTML", "CSS", "Bootstrap"],
       period: "Jan – May 2025",
-      video: "/lagintareal-video.mp4",
+      video: "https://youtu.be/0aa8zfnsHV0",
     },
     {
       num: "04",
