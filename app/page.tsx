@@ -16,6 +16,7 @@ export default function Portfolio() {
   const [dark, setDark] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+  const [openDemo, setOpenDemo] = useState<string | null>(null);
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [formStatus, setFormStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [visibleSections, setVisibleSections] = useState<Set<string>>(new Set());
@@ -87,6 +88,7 @@ export default function Portfolio() {
       desc: "A deep learning model for detecting and recognizing Philippine road signs under varied environmental conditions — sunny, nighttime, and rainy. Built a comprehensive dataset across Dumaguete City, performed data augmentation, and annotated images in Roboflow.",
       tech: ["Python", "CNN", "Google Colab", "Roboflow"],
       period: "June 2025 – March 2026",
+      article: "https://docs.google.com/document/d/16jluXD31vHWNfXK4IkQZwlGCtszBLkxfwaWfDaYIbDQ/edit?usp=sharing",
     },
     {
       num: "02",
@@ -95,6 +97,7 @@ export default function Portfolio() {
       desc: "Co-authored a research paper on figurative language understanding using multitask NLP. Built a corpus of 1,500+ expressions through web scraping and evaluated using XLM-RoBERTa-base.",
       tech: ["Python", "XLM-RoBERTa", "NLP", "NER", "JSON"],
       period: "May – July 2025",
+      article: "https://docs.google.com/document/d/1MIjF-vfmUDEfWZkSratbl7uesSYD3J7x/edit?usp=sharing&ouid=113843473622081898564&rtpof=true&sd=true",
     },
     {
       num: "03",
@@ -103,6 +106,7 @@ export default function Portfolio() {
       desc: "Developed responsive UI for room browsing, booking, and reservation management. Designed the payment and receipt interface and integrated with PHP/MySQL backend.",
       tech: ["PHP", "MySQL", "JavaScript", "HTML", "CSS", "Bootstrap"],
       period: "Jan – May 2025",
+      video: "/lagintareal-video.mp4",
     },
     {
       num: "04",
@@ -111,6 +115,8 @@ export default function Portfolio() {
       desc: "Led development of a mobile app that helps users identify and access detailed medicine information using OCR-based scanning. Integrated Firebase for real-time data and authentication, with a Python backend hosted on AWS.",
       tech: ["React Native", "Firebase", "Python", "OCR", "AWS", "Android Studio"],
       period: "Aug – Dec 2024",
+      video: "https://youtu.be/EnxgWy3kylk",
+
     },
     {
       num: "05",
@@ -815,39 +821,80 @@ export default function Portfolio() {
 
       {/* ── PROJECTS ── */}
       <section id="projects">
-        <div className={fadeClass("projects")}>
+        <div className={fadeClass("projects")}>       
           <div className="section-label">things I've built</div>
           <h2 className="section-title">Featured Projects</h2>
           <div className="section-line" />
           <div className="projects-list">
             {projects.map((p, i) => (
-            <div className="project-card" key={p.num} style={staggerStyle(i)}>
-              <div className="project-num">{p.num}</div>
-              <div>
-                <div className="project-type">{p.type}</div>
-                <div className="project-title">{p.title}</div>
-                <div className="project-desc">{p.desc}</div>
-                <div className="project-footer">
-                  <div className="project-tech">
-                    {p.tech.map((t) => <span className="tech-badge" key={t}>{t}</span>)}
+              <div className="project-card" key={p.num} style={staggerStyle(i)}>
+                <div className="project-num">{p.num}</div>
+                <div style={{ width: "100%" }}>
+                  <div className="project-type">{p.type}</div>
+                  <div className="project-title">{p.title}</div>
+                  <div className="project-desc">{p.desc}</div>
+                  <div className="project-footer">
+                    <div className="project-tech">
+                      {p.tech.map((t) => <span className="tech-badge" key={t}>{t}</span>)}
+                    </div>
+                    <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+                      {p.video && (
+                        <button
+                          className="project-link"
+                          style={{ background: "none", border: "none", cursor: "pointer", fontFamily: "inherit", padding: 0 }}
+                          onClick={() => setOpenDemo(openDemo === p.num ? null : p.num)}
+                        >
+                          {openDemo === p.num ? "Hide Demo ↑" : "View Demo ▶"}
+                        </button>
+                      )}
+                      {p.link && (
+                        <a href={p.link} target="_blank" rel="noopener noreferrer" className="project-link">
+                          View Live →
+                        </a>
+                      )}
+                      {p.article && (
+                        <a href={p.article} target="_blank" rel="noopener noreferrer" className="project-link">
+                          View Article →
+                        </a>
+                      )}
+                      <span className="project-period">{p.period}</span>
+                    </div>
                   </div>
-                  <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
-                    {p.link && (
-                      <a
-                        href={p.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="project-link"
-                      >
-                        View Live →
-                      </a>
-                    )}
-                    <span className="project-period">{p.period}</span>
-                  </div>
+
+                  {p.video && (
+                    <div
+                      style={{
+                        display: "grid",
+                        gridTemplateRows: openDemo === p.num ? "1fr" : "0fr",
+                        marginTop: openDemo === p.num ? "1.25rem" : "0",
+                        transition: "grid-template-rows 0.45s cubic-bezier(0.4,0,0.2,1), margin-top 0.45s ease",
+                      }}
+                    >
+                      <div style={{ overflow: "hidden" }}>
+                        <div
+                          style={{
+                            borderRadius: "12px",
+                            overflow: "hidden",
+                            border: "1px solid var(--border)",
+                            background: "#000",
+                            opacity: openDemo === p.num ? 1 : 0,
+                            transform: openDemo === p.num ? "translateY(0)" : "translateY(-8px)",
+                            transition: "opacity 0.35s ease 0.1s, transform 0.35s ease 0.1s",
+                          }}
+                        >
+                          <video
+                            src={p.video}
+                            controls
+                            style={{ width: "100%", display: "block", maxHeight: "480px" }}
+                            preload="metadata"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
           </div>
         </div>
       </section>
