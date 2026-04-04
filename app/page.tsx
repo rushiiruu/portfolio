@@ -3,13 +3,9 @@ import { useState, useEffect, useRef } from "react";
 import emailjs from "@emailjs/browser";
 
 // ── CONFIG ──────────────────────────────────────────────────────────────────
-// 1. Go to https://www.emailjs.com and create a free account
-// 2. Add a service (Gmail, Outlook, etc.)
-// 3. Create an email template — use these variables: {{from_name}}, {{from_email}}, {{message}}
-// 4. Paste your IDs below
-const EMAILJS_SERVICE_ID  = "service_rfedngz";   // e.g. "service_abc123"
-const EMAILJS_TEMPLATE_ID = "template_p5s33jk";  // e.g. "template_xyz456"
-const EMAILJS_PUBLIC_KEY  = "ESO4gIi74dsmAIyQ5";   // e.g. "aBcDeFgH1234567"
+const EMAILJS_SERVICE_ID  = "service_rfedngz";
+const EMAILJS_TEMPLATE_ID = "template_p5s33jk";
+const EMAILJS_PUBLIC_KEY  = "ESO4gIi74dsmAIyQ5";
 // ────────────────────────────────────────────────────────────────────────────
 
 export default function Portfolio() {
@@ -76,8 +72,8 @@ export default function Portfolio() {
   const skills = {
     "{ Frontend }": ["HTML5", "CSS3", "Tailwind CSS", "Bootstrap", "React", "React Native", "JavaScript"],
     "{ Backend }": ["PHP", "Python", "C", "R", "Node.js"],
-    "{ Database & Tools }": ["MySQL", "T-SQL", "Git", "Tableau", "Tesseract OCR", "Roboflow"],
-    "{ ML & AI }": ["NLP", "Computer Vision", "XLM-RoBERTa", "CNN", "Data Augmentation"],
+    "{ Database & Tools }": ["MySQL", "T-SQL", "Git", "Tableau", "Roboflow"],
+    "{ ML & AI }": ["NLP", "Computer Vision", "CNN"],
   };
 
   const projects = [
@@ -116,7 +112,6 @@ export default function Portfolio() {
       tech: ["React Native", "Firebase", "Python", "OCR", "AWS", "Android Studio"],
       period: "Aug – Dec 2024",
       video: "https://youtu.be/EnxgWy3kylk",
-
     },
     {
       num: "05",
@@ -131,7 +126,7 @@ export default function Portfolio() {
 
   const awards = [
     {
-      icon: "🏅",
+      icon: "bi-award",
       title: "5th Placer – Ai.Deas for Impact 2025 (Region VII)",
       org: "DICT · Tagbilaran City, Bohol",
       date: "Sept 16–17, 2025",
@@ -139,21 +134,21 @@ export default function Portfolio() {
       link: "https://su.edu.ph/su-team-places-5th-in-regl-ai-hackathon-with-public-health-solution-axolert/",
     },
     {
-      icon: "💡",
+      icon: "bi-lightbulb",
       title: "Participant – Innovathon for Universities",
       org: "Philtech Inc. · BGC, Taguig City",
       date: "Jan 22–23, 2026",
       desc: "Co-developed Nudge, an AI mental health concept for youth.",
     },
     {
-      icon: "📜",
+      icon: "bi-file-earmark-text",
       title: "AI – NLP Workshop Certificate",
       org: "National University × Silliman University",
       date: "Aug 21–22, 2024",
       desc: "Completed intensive NLP workshop on ML applications in text processing.",
     },
     {
-      icon: "🎓",
+      icon: "bi-mortarboard",
       title: "Academic Scholarship Recipient",
       org: "Silliman University",
       date: "Selected Semesters, 2022–2026",
@@ -161,8 +156,7 @@ export default function Portfolio() {
     },
   ];
 
-  // Staggered fade-in for child cards
-  const fadeClass = (id: string, delay = 0) =>
+  const fadeClass = (id: string) =>
     `transition-all duration-700 ${
       visibleSections.has(id)
         ? "opacity-100 translate-y-0"
@@ -177,6 +171,7 @@ export default function Portfolio() {
     <div className={`${dark ? "dark" : ""}`}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap');
+        @import url('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css');
 
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -256,8 +251,9 @@ export default function Portfolio() {
 
         .theme-btn {
           background: none; border: 1px solid var(--border); border-radius: 999px;
-          padding: 0.35rem 0.75rem; cursor: pointer; font-size: 0.95rem;
+          padding: 0.35rem 0.75rem; cursor: pointer; font-size: 1rem;
           color: var(--fg); transition: border-color 0.2s, transform 0.2s;
+          display: flex; align-items: center; justify-content: center;
         }
         .theme-btn:hover { border-color: var(--pink); transform: rotate(15deg); }
 
@@ -389,6 +385,7 @@ export default function Portfolio() {
           font-size: 0.75rem; font-weight: 600; white-space: nowrap;
           box-shadow: 0 4px 16px rgba(243,107,141,0.35);
           animation: floatTag 3s ease-in-out infinite;
+          display: flex; align-items: center; gap: 0.35rem;
         }
         @keyframes floatTag {
           0%, 100% { transform: translateY(0); }
@@ -462,6 +459,7 @@ export default function Portfolio() {
         .about-card-label {
           font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em;
           color: var(--pink); font-weight: 700; margin-bottom: 0.25rem;
+          display: flex; align-items: center; gap: 0.4rem;
         }
         .about-card-title { font-size: 0.95rem; font-weight: 600; color: var(--fg); margin-bottom: 0.1rem; }
         .about-card-sub { font-size: 0.8rem; color: var(--fg2); }
@@ -517,7 +515,7 @@ export default function Portfolio() {
           content: ''; position: absolute; inset: 0; left: auto; width: 0;
           background: linear-gradient(135deg, rgba(243,107,141,0.04), transparent);
           transition: width 0.4s ease;
-          pointer-events: none;  /* ← add this */
+          pointer-events: none;
         }
         .project-card:hover::before { width: 100%; }
         .project-card:hover { border-color: var(--pink); transform: translateX(6px); box-shadow: var(--shadow); }
@@ -586,7 +584,21 @@ export default function Portfolio() {
         .award-card:hover::after { transform: scaleX(1); }
         .award-card:hover { border-color: var(--pink); transform: translateY(-5px); box-shadow: var(--shadow); }
 
-        .award-icon { font-size: 1.5rem; margin-bottom: 0.75rem; display: block; }
+        .award-icon-wrap {
+          width: 40px; height: 40px; border-radius: 10px;
+          background: var(--pink-light);
+          display: flex; align-items: center; justify-content: center;
+          margin-bottom: 0.75rem;
+          transition: background 0.2s;
+        }
+        .dark .award-icon-wrap { background: #3d1a26; }
+        .award-card:hover .award-icon-wrap { background: var(--pink); }
+        .award-icon-wrap i {
+          font-size: 1.1rem; color: var(--pink);
+          transition: color 0.2s;
+        }
+        .award-card:hover .award-icon-wrap i { color: white; }
+
         .award-date { font-size: 0.72rem; color: var(--pink); font-weight: 700; letter-spacing: 0.06em; margin-bottom: 0.4rem; }
         .award-title { font-size: 0.95rem; font-weight: 600; color: var(--fg); margin-bottom: 0.2rem; line-height: 1.4; }
         .award-org { font-size: 0.78rem; color: var(--fg2); margin-bottom: 0.5rem; }
@@ -621,11 +633,12 @@ export default function Portfolio() {
         .contact-link-icon {
           width: 38px; height: 38px; border-radius: 11px;
           background: var(--pink-light); display: flex; align-items: center;
-          justify-content: center; font-size: 1rem; flex-shrink: 0;
+          justify-content: center; font-size: 1.1rem; flex-shrink: 0;
           transition: background 0.2s, transform 0.2s;
+          color: var(--pink);
         }
         .dark .contact-link-icon { background: #3d1a26; }
-        .contact-link:hover .contact-link-icon { background: var(--pink); transform: scale(1.08); }
+        .contact-link:hover .contact-link-icon { background: var(--pink); color: white; transform: scale(1.08); }
 
         /* FORM */
         .contact-form { display: flex; flex-direction: column; gap: 1rem; }
@@ -653,6 +666,7 @@ export default function Portfolio() {
           transition: background 0.2s, transform 0.25s, box-shadow 0.25s;
           align-self: flex-start;
           box-shadow: 0 4px 14px rgba(243,107,141,0.3);
+          display: inline-flex; align-items: center; gap: 0.5rem;
         }
         .form-submit:hover:not(:disabled) { background: var(--pink-dark); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(243,107,141,0.4); }
         .form-submit:disabled { opacity: 0.7; cursor: not-allowed; }
@@ -662,12 +676,14 @@ export default function Portfolio() {
           border-radius: 12px; padding: 1rem 1.25rem;
           color: #065f46; font-size: 0.9rem; font-weight: 500;
           animation: popIn 0.4s cubic-bezier(0.34,1.56,0.64,1) both;
+          display: flex; align-items: center; gap: 0.6rem;
         }
         .form-error {
           background: #fee2e2; border: 1px solid #fca5a5;
           border-radius: 12px; padding: 1rem 1.25rem;
           color: #991b1b; font-size: 0.9rem; font-weight: 500;
           animation: popIn 0.4s cubic-bezier(0.34,1.56,0.64,1) both;
+          display: flex; align-items: center; gap: 0.6rem;
         }
         @keyframes popIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
 
@@ -677,8 +693,9 @@ export default function Portfolio() {
         footer {
           text-align: center; padding: 2rem; border-top: 1px solid var(--border);
           color: var(--fg2); font-size: 0.8rem;
+          display: flex; align-items: center; justify-content: center; gap: 0.4rem;
         }
-        footer span { color: var(--pink); }
+        footer i { color: var(--pink); }
 
         /* ── BACK TO TOP ─────────────────────────── */
         .back-top {
@@ -712,7 +729,7 @@ export default function Portfolio() {
         </ul>
         <div className="nav-right">
           <button className="theme-btn" onClick={() => setDark(!dark)} aria-label="Toggle dark mode">
-            {dark ? "☀️" : "🌙"}
+            <i className={`bi ${dark ? "bi-sun" : "bi-moon"}`} />
           </button>
           <button
             className={`hamburger ${menuOpen ? "open" : ""}`}
@@ -734,12 +751,14 @@ export default function Portfolio() {
       <section id="home" style={{ position: "relative" }}>
         <div className="hero-inner">
           <div>
-            <div className="hero-greeting">hello there 👋</div>
+            <div className="hero-greeting">
+              <i className="bi bi-hand-wave" /> hello there
+            </div>
             <h1 className="hero-name">
               I'm <em>Rusyl Anne</em><br />Espiña.
             </h1>
             <p className="hero-tagline">
-              Computer Science Graduate at Silliman University · Web & Mobile Developer · Builder of data-driven, user-centered things.
+              I enjoy solving problems and building practical applications. As I explore full-stack development, I approach each project as a student for life, always learning and improving.
             </p>
             <div className="hero-btns">
               <button className="btn-primary" onClick={() => scrollTo("projects")}>View My Work</button>
@@ -752,7 +771,9 @@ export default function Portfolio() {
             <div className="hero-photo-inner">
               <img src="/rusyl.png" alt="Rusyl Anne Espiña" />
             </div>
-            <div className="hero-photo-tag">✨ Open to opportunities</div>
+            <div className="hero-photo-tag">
+              <i className="bi bi-stars" /> Open to opportunities
+            </div>
           </div>
         </div>
 
@@ -772,7 +793,7 @@ export default function Portfolio() {
           <div className="about-grid">
             <div className="about-text">
               <p>
-                Hi, I'm <span style={{ color: "#f36b8d", fontWeight: "600" }}>Rusyl Anne</span> — a Computer Science graduate from Silliman University. I enjoy building things that are both practical and human-centered, whether it's a mobile app, a web platform (where most of my experience lies), or an ML model. I try to bring careful problem-solving and thoughtful design to every project.
+                Hi, I'm <span style={{ color: "#f36b8d", fontWeight: "600" }}>Rusyl Anne</span> — a Computer Science graduate from Silliman University. I enjoy building things that are both practical and human-centered, whether it's a mobile app or a web platform (but I mostly prefer web haha!). I try to bring careful problem-solving and thoughtful design to every project.
               </p>
               <p>
                 So far, I've had the chance to explore full-stack web and mobile development, NLP research, and computer vision. I've also had opportunities to join hackathons, where I was introduced to real-world problems that can be addressed with technology, which has been a valuable learning experience.
@@ -784,15 +805,27 @@ export default function Portfolio() {
 
             <div className="about-highlights">
               {[
-                { label: "🎓 Education", title: "BS Computer Science", sub: ["Silliman University, Dumaguete City · 2022–2026", "GWA: 3.42"] },
-                { label: "🏆 Academic Honors", title: "University Class Honors", sub: ["2022–2023 & 2024–2025 · Academic Scholarship Recipient"] },
-                { label: "🔬 Research", title: "Intern – National University, Manila", sub: ["NLP Research · May–July 2025"] },
-                { label: "🎨 Leadership", title: "Infomedia Committee Head", sub: ["CCS Dept. Student Council · SU · 2022–2024"] },
+                { icon: "bi-mortarboard", label: "Education", title: "BS Computer Science", sub: ["Silliman University, Dumaguete City · 2022–2026", "GWA: 3.42"] },
+                { icon: "bi-trophy", label: "Academic Honors", title: "University Class Honors", sub: ["2022–2023 & 2024–2025 · Academic Scholarship Recipient"] },
+                { icon: "bi-journal-text", label: "Research", title: "Intern – National University, Manila", sub: ["NLP Research · May–July 2025"] },
+                { icon: "bi-people", label: "Leadership", title: "Infomedia Committee Head", sub: ["CCS Dept. Student Council · SU · 2022–2024"] },
               ].map((c, i) => (
                 <div className="about-card" key={i} style={staggerStyle(i)}>
-                  <div className="about-card-label">{c.label}</div>
+                  <div className="about-card-label">
+                    <i className={`bi ${c.icon}`} /> {c.label}
+                  </div>
                   <div className="about-card-title">{c.title}</div>
-                  {c.sub.map((s, j) => <div className="about-card-sub" key={j}>{s}</div>)}
+                  {c.sub.map((s, j) => (
+                    <div className="about-card-sub" key={j}>
+                      {s.includes("GWA") ? (
+                        <>
+                          <strong>GWA:</strong> {s.split("GWA: ")[1]}
+                        </>
+                      ) : (
+                        s
+                      )}
+                    </div>
+                  ))}
                 </div>
               ))}
             </div>
@@ -821,7 +854,7 @@ export default function Portfolio() {
 
       {/* ── PROJECTS ── */}
       <section id="projects">
-        <div className={fadeClass("projects")}>       
+        <div className={fadeClass("projects")}>
           <div className="section-label">things I've built</div>
           <h2 className="section-title">Featured Projects</h2>
           <div className="section-line" />
@@ -840,12 +873,12 @@ export default function Portfolio() {
                     <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
                       {p.link && (
                         <a href={p.link} target="_blank" rel="noopener noreferrer" className="project-link">
-                          View Live →
+                          <i className="bi bi-box-arrow-up-right" /> View Live
                         </a>
                       )}
                       {p.article && (
                         <a href={p.article} target="_blank" rel="noopener noreferrer" className="project-link">
-                          View Article →
+                          <i className="bi bi-file-earmark-text" /> View Article
                         </a>
                       )}
                       {p.video && (
@@ -854,10 +887,16 @@ export default function Portfolio() {
                           style={{ background: "none", border: "none", cursor: "pointer", fontFamily: "inherit", padding: 0 }}
                           onClick={() => setOpenDemo(openDemo === p.num ? null : p.num)}
                         >
-                          {openDemo === p.num ? "Hide Demo ↑" : "View Demo ▶"}
+                          {openDemo === p.num
+                            ? <><i className="bi bi-chevron-up" /> Hide Demo</>
+                            : <><i className="bi bi-play-circle" /> View Demo</>
+                          }
                         </button>
                       )}
-                      <span className="project-period">{p.period}</span>
+                      <span className="project-period">
+                        <i className="bi bi-calendar3" style={{ marginRight: "0.25rem", opacity: 0.6 }} />
+                        {p.period}
+                      </span>
                     </div>
                   </div>
 
@@ -890,14 +929,22 @@ export default function Portfolio() {
           <div className="awards-grid">
             {awards.map((award, i) => (
               <div className="award-card" key={i} style={staggerStyle(i)}>
-                <span className="award-icon">{award.icon}</span>
-                <div className="award-date">{award.date}</div>
+                <div className="award-icon-wrap">
+                  <i className={`bi ${award.icon}`} />
+                </div>
+                <div className="award-date">
+                  <i className="bi bi-calendar3" style={{ marginRight: "0.25rem" }} />
+                  {award.date}
+                </div>
                 <div className="award-title">{award.title}</div>
-                <div className="award-org">{award.org}</div>
+                <div className="award-org">
+                  <i className="bi bi-building" style={{ marginRight: "0.3rem", opacity: 0.7 }} />
+                  {award.org}
+                </div>
                 <div className="award-desc">{award.desc}</div>
                 {award.link && (
                   <a href={award.link} target="_blank" rel="noopener noreferrer" className="award-link">
-                    Read article →
+                    <i className="bi bi-arrow-right" /> Read article
                   </a>
                 )}
               </div>
@@ -920,19 +967,19 @@ export default function Portfolio() {
               </p>
               <div className="contact-links">
                 <a href="mailto:espinarusyl@gmail.com" className="contact-link">
-                  <span className="contact-link-icon">✉️</span>
+                  <span className="contact-link-icon"><i className="bi bi-envelope" /></span>
                   espinarusyl@gmail.com
                 </a>
                 <a href="https://linkedin.com/in/rusylanneespiña" target="_blank" rel="noreferrer" className="contact-link">
-                  <span className="contact-link-icon">💼</span>
+                  <span className="contact-link-icon"><i className="bi bi-linkedin" /></span>
                   linkedin.com/in/rusylanneespiña
                 </a>
                 <a href="tel:+639760156425" className="contact-link">
-                  <span className="contact-link-icon">📱</span>
+                  <span className="contact-link-icon"><i className="bi bi-phone" /></span>
                   +63 976 015 6425
                 </a>
                 <span className="contact-link">
-                  <span className="contact-link-icon">📍</span>
+                  <span className="contact-link-icon"><i className="bi bi-geo-alt" /></span>
                   Cebu City, Philippines
                 </span>
               </div>
@@ -941,17 +988,18 @@ export default function Portfolio() {
             <div>
               {formStatus === "sent" ? (
                 <div className="form-success">
-                  🌸 Thank you! Your message has been sent. I'll get back to you soon!
+                  <i className="bi bi-check-circle-fill" style={{ fontSize: "1.2rem", flexShrink: 0 }} />
+                  Thank you! Your message has been sent. I'll get back to you soon!
                 </div>
               ) : (
                 <>
                   {formStatus === "error" && (
                     <div className="form-error" style={{ marginBottom: "1rem" }}>
-                      😕 Oops! Something went wrong. Please try emailing me directly at espinarusyl@gmail.com
+                      <i className="bi bi-exclamation-circle-fill" style={{ fontSize: "1.2rem", flexShrink: 0 }} />
+                      Oops! Something went wrong. Please try emailing me directly at espinarusyl@gmail.com
                     </div>
                   )}
                   <form className="contact-form" ref={formRef} onSubmit={handleSubmit}>
-                    {/* EmailJS uses the `name` attribute on inputs — keep them as-is */}
                     <div className="form-group">
                       <label className="form-label">Name</label>
                       <input
@@ -988,7 +1036,10 @@ export default function Portfolio() {
                       />
                     </div>
                     <button className="form-submit" type="submit" disabled={formStatus === "sending"}>
-                      {formStatus === "sending" ? "Sending…" : "Send Message →"}
+                      {formStatus === "sending"
+                        ? <><i className="bi bi-arrow-repeat" /> Sending…</>
+                        : <><i className="bi bi-send" /> Send Message</>
+                      }
                     </button>
                   </form>
                 </>
@@ -1000,10 +1051,14 @@ export default function Portfolio() {
 
       {/* ── FOOTER ── */}
       <footer>
-        <p>Built with <span>♥</span> by Rusyl Anne Espiña · © {new Date().getFullYear()}</p>
+        <span>Built with</span>
+        <i className="bi bi-heart-fill" />
+        <span>by Rusyl Anne Espiña · © {new Date().getFullYear()}</span>
       </footer>
 
-      <button className="back-top" onClick={() => scrollTo("home")} aria-label="Back to top">↑</button>
+      <button className="back-top" onClick={() => scrollTo("home")} aria-label="Back to top">
+        <i className="bi bi-arrow-up" />
+      </button>
     </div>
   );
 }
