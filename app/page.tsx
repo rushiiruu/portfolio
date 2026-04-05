@@ -974,6 +974,10 @@ export default function Portfolio() {
                   <span className="contact-link-icon"><i className="bi bi-linkedin" /></span>
                   linkedin.com/in/rusylanneespiña
                 </a>
+                <a href="https://rusyll.vercel.app" target="_blank" rel="noreferrer" className="contact-link">
+                  <span className="contact-link-icon"><i className="bi bi-globe" /></span>
+                  rusyll.vercel.app
+                </a>
                 <a href="tel:+639760156425" className="contact-link">
                   <span className="contact-link-icon"><i className="bi bi-phone" /></span>
                   +63 976 015 6425
