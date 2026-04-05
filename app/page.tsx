@@ -79,9 +79,9 @@ export default function Portfolio() {
   const projects = [
     {
       num: "01",
-      title: "CNN-Based Philippine Road Sign Detection",
+      title: "A CNN-Based Model for Detection and Recognition of Philippine Road Signs Under Varied Environmental Conditions ",
       type: "Undergraduate Thesis",
-      desc: "A deep learning model for detecting and recognizing Philippine road signs under varied environmental conditions — sunny, nighttime, and rainy. Built a comprehensive dataset across Dumaguete City, performed data augmentation, and annotated images in Roboflow.",
+      desc: "Developed a deep learning model for detecting and recognizing Philippine road signs across diverse environmental conditions, including sunny, nighttime, and rainy scenarios. Leveraged YOLOv12, a state-of-the-art version of the YOLO (You Only Look Once) architecture at the time of development, to enable efficient and accurate real-time object detection. Built a comprehensive dataset from Dumaguete City, applied data augmentation techniques, and performed detailed image annotation using Roboflow.",
       tech: ["Python", "CNN", "Google Colab", "Roboflow"],
       period: "June 2025 – March 2026",
       article: "https://docs.google.com/document/d/16jluXD31vHWNfXK4IkQZwlGCtszBLkxfwaWfDaYIbDQ/edit?usp=sharing",
@@ -99,7 +99,7 @@ export default function Portfolio() {
       num: "03",
       title: "La Ginta Real – Hotel Reservation System",
       type: "Web Application",
-      desc: "Developed responsive UI for room browsing, booking, and reservation management. Designed the payment and receipt interface and integrated with PHP/MySQL backend.",
+      desc: "Developed a responsive and user-centered frontend for a hotel reservation system, enabling seamless room browsing, availability checking, and booking workflows. Designed and implemented interactive UI components such as dynamic reservation forms, date selection, and real-time pricing calculations. Collaborated on integrating the frontend with a PHP/MySQL backend to support booking logic, data persistence, and reservation management.",
       tech: ["PHP", "MySQL", "JavaScript", "HTML", "CSS", "Bootstrap"],
       period: "Jan – May 2025",
       video: "https://youtu.be/0aa8zfnsHV0",
