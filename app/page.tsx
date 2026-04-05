@@ -72,7 +72,7 @@ export default function Portfolio() {
   const skills = {
     "{ Frontend }": ["HTML5", "CSS3", "Tailwind CSS", "Bootstrap", "React", "React Native", "JavaScript", "TypeScript"],
     "{ Backend }": ["PHP", "Python", "C", "R", "Node.js"],
-    "{ Database & Tools }": ["MySQL", "T-SQL", "Git", "Tableau", "Roboflow"],
+    "{ Database & Tools }": ["MySQL", "T-SQL", "Git", "Tableau", "Roboflow", "Microsoft Excel"],
     "{ ML & AI }": ["NLP", "CNN"],
   };
 
