@@ -70,10 +70,10 @@ export default function Portfolio() {
   const navLinks = ["home", "about", "skills", "projects", "awards", "contact"];
 
   const skills = {
-    "{ Frontend }": ["HTML5", "CSS3", "Tailwind CSS", "Bootstrap", "React", "React Native", "JavaScript"],
+    "{ Frontend }": ["HTML5", "CSS3", "Tailwind CSS", "Bootstrap", "React", "React Native", "JavaScript", "TypeScript"],
     "{ Backend }": ["PHP", "Python", "C", "R", "Node.js"],
     "{ Database & Tools }": ["MySQL", "T-SQL", "Git", "Tableau", "Roboflow"],
-    "{ ML & AI }": ["NLP", "Computer Vision", "CNN"],
+    "{ ML & AI }": ["NLP", "CNN"],
   };
 
   const projects = [
@@ -130,7 +130,7 @@ export default function Portfolio() {
       title: "5th Placer – Ai.Deas for Impact 2025 (Region VII)",
       org: "DICT · Tagbilaran City, Bohol",
       date: "Sept 16–17, 2025",
-      desc: "Collaborated in developing Axolert, an AI-driven public health monitoring system.",
+      desc: "Co-developed Axolert, enabling real-time outbreak detection and predictive resource planning for faster public health response.",
       link: "https://su.edu.ph/su-team-places-5th-in-regl-ai-hackathon-with-public-health-solution-axolert/",
     },
     {
